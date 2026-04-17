@@ -10,10 +10,9 @@ import os
 load_dotenv()
 
 model = ChatOpenAI(
-    model="openai/gpt-4o-mini",
+    model="openrouter/auto",
     base_url="https://openrouter.ai/api/v1",
     api_key=os.getenv("OPENROUTER_API_KEY"),
-    streaming=True
 )
 
 class ChatState(TypedDict):
@@ -36,17 +35,3 @@ graph.add_edge("chat_node", END)
 chatbot = graph.compile(checkpointer=checkpointer)
 
 config = {"configurable": {"thread_id": "1"}}
-
-result = chatbot.invoke(
-    {"messages": [HumanMessage(content="Hello")]},
-    config=config
-)
-
-print("AI:", result["messages"][-1].content)
-
-result = chatbot.invoke(
-    {"messages": [HumanMessage(content="What did I just say?")]},
-    config=config
-)
-
-print("AI:", result["messages"][-1].content) 
