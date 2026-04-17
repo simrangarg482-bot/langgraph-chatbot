@@ -54,7 +54,9 @@ st.set_page_config(
 # UI styling
 st.markdown("""
 <style>
-    body { background-color: #0e1117; }
+    .stApp {
+        background-color: #0e1117;
+    }
 
     .user-msg {
         background-color: #1f2937;
@@ -188,7 +190,7 @@ if user_input:
             unsafe_allow_html=True
         )
 
-    # store assistant message
+    # store assistant messages
     st.session_state["ui_messages"].append({
         "role": "assistant",
         "content": final_response
